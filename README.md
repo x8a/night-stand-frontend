@@ -24,5 +24,4 @@ An app where users keep track of the books they're reading.
 - **Social login** - As a user I want to log in with my google account.
 
 ## Wireframes
-![Home](private/wireframes/landing.png)
 ![Home](private/wireframes/app.png)
