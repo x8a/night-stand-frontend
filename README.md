@@ -1,14 +1,14 @@
 # Nightstand
 An app where users keep track of the books they're reading.
 
-## Links to App 
+## Links 
 [Heroku]()
+
+[Jira board](https://x8a.atlassian.net/secure/RapidBoard.jspa?rapidView=1&projectKey=NIGHTSTAND)
 
 [Backend repo](https://github.com/x8a/night-stand-backend)
 
 ## User Stories
-- **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault.
-- **500** - As a user I want to see a nice error page when the super team screws up so that I know that is not my fault.
 - **Homepage** - As a user I want to be able to access the homepage so that I see what the app is about and login and signup.
 - **Sign up** - As a user I want to sign up on the webpage so that I can sing up.
 - **Login** - As a user I want to be able to log in on the webpage so that I can get back to my account.
