@@ -38,3 +38,14 @@
 .form-text {
   text-align: center;
 }
+
+.profile-pic {
+  width: 25%;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

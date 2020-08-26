@@ -15,10 +15,10 @@ class myNav extends Component {
       );
   
       if (this.props.user) {
-        console.log("Hay usuario logueado!", this.props.user);
         authLink = (
           <Nav className="mr-auto">
             <NavLink to="/profile" className="nav-link">Profile</NavLink>
+            <NavLink to="/create/pending" className="nav-link">Add book</NavLink>
             <NavLink to="/logout" className="nav-link">Log out</NavLink>
           </Nav>
         );

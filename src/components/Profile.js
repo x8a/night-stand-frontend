@@ -1,14 +1,27 @@
 import React, { Component } from 'react'
-import { NavLink } from "react-router-dom";
 
 export default class Profile extends Component {
     render() {
+        console.log(this.props.loggedInUser)
+
+        let booksReading = ""
+
+        if (this.props.loggedInUser.books.length !== 0) {
+            booksReading = (
+                <div className="profile">
+                <h3>Reading</h3>
+                <p>My book</p>
+                </div>
+            );
+          }
+
         return (
             <div>
-                <h1>Welcome to your profile, {this.props.loggedInUser.username}</h1>
-                <p>Name: {this.props.loggedInUser.name}</p>
-                <p>Last Name: {this.props.loggedInUser.lastName}</p>
-                <NavLink to="/logout" className="nav-link">Logout</NavLink>
+                <div className="profile">
+                    <img className="profile-pic" src={this.props.loggedInUser.pic} alt="Profile pic"/>
+                    <p>{this.props.loggedInUser.name} {this.props.loggedInUser.lastName}</p>
+                </div>
+                {booksReading}
             </div>
         )
     }

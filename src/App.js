@@ -1,68 +1,75 @@
-import React, { Component } from 'react';
-import './App.css';
-import { Switch, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Logout from './components/Logout';
-import Profile from './components/Profile';
-import ProtectedRoute from './auth/protected-route';
-import Nav from './components/Navbar';
+import React, { Component } from "react";
+import "./App.css";
+import { Switch, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Logout from "./components/Logout";
+import Profile from "./components/Profile";
+import NewBook from "./components/NewBook";
+import ProtectedRoute from "./auth/protected-route";
+import Nav from "./components/Navbar";
 
 class App extends Component {
-
-  constructor(props){
-    super(props)
-    this.state = { 
-      loggedInUser: JSON.parse(localStorage.getItem('loggedInUser')) || null 
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedInUser: JSON.parse(localStorage.getItem("loggedInUser")) || null,
     };
   }
 
   getTheUser = (userObj) => {
     this.setState({
-      loggedInUser: userObj
-    })
-    this.setState({
-      loggedInUser: userObj
-    }, () => {
-      localStorage.setItem('loggedInUser', JSON.stringify(this.state.loggedInUser))
-    })
-  }
+      loggedInUser: userObj,
+    });
+    this.setState(
+      {
+        loggedInUser: userObj,
+      },
+      () => {
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify(this.state.loggedInUser)
+        );
+      }
+    );
+  };
 
   render() {
-      return (
-        <div>
-          <Nav user={this.state.loggedInUser} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route
-              exact
-              path="/signup"
-              render={(props) => (
-                <Signup {...props} getUser={this.getTheUser} />
-              )}
-            />
-            <Route
-              exact
-              path="/login"
-              render={(props) => <Login {...props} getUser={this.getTheUser} />}
-            />
-            <Route
-              exact
-              path="/logout"
-              render={(props) => (
-                <Logout {...props} callback={this.getTheUser} />
-              )}
-            />
-            <ProtectedRoute
-              path="/profile"
-              user={this.state.loggedInUser}
-              component={Profile}
-            />
-          </Switch>
-        </div>
-      );
+    return (
+      <div>
+        <Nav user={this.state.loggedInUser} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="/signup"
+            render={(props) => <Signup {...props} getUser={this.getTheUser} />}
+          />
+          <Route
+            exact
+            path="/login"
+            render={(props) => <Login {...props} getUser={this.getTheUser} />}
+          />
+          <Route
+            exact
+            path="/logout"
+            render={(props) => <Logout {...props} callback={this.getTheUser} />}
+          />
+          <ProtectedRoute
+            path="/profile"
+            user={this.state.loggedInUser}
+            component={Profile}
+          />
+          <ProtectedRoute
+            path="/create/pending"
+            user={this.state.loggedInUser}
+            component={NewBook}
+          />
+        </Switch>
+      </div>
+    );
   }
 }
- 
+
 export default App;
