@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 class myNav extends Component {
   render() {
@@ -24,7 +26,7 @@ class myNav extends Component {
 
     return (
         <Navbar bg="light" expand="lg">
-        <NavLink to="/" className="nav-link">Home</NavLink>
+        <Navbar.Brand to="/"><NavLink to="/" className="nav-link"><FontAwesomeIcon icon={faHome}/></NavLink></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
               {authLink}

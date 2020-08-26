@@ -30,7 +30,7 @@ class Login extends Component {
   render(){
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit} style={{width: '20%'}}>
+        <form onSubmit={this.handleFormSubmit} className="forms">
           <div className="form-group">
             <label>Username</label>
             <input
@@ -55,7 +55,7 @@ class Login extends Component {
 
           <input className="btn btn-success" type="submit" value="Login" />
         </form>
-        <p>
+        <p className="form-text">
           Don't have an account? <Link to={'/signup'}>Signup</Link>
         </p>
       </div>

@@ -43,7 +43,7 @@ class Signup extends Component {
   render(){
     return(
         <div>
-          <form onSubmit={this.handleFormSubmit} style={{width: '20%'}} >
+          <form onSubmit={this.handleFormSubmit} className="forms" >
             <div className="form-group">
             <label>Username</label>
             <input className="form-control" type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
@@ -67,8 +67,7 @@ class Signup extends Component {
             <input className="btn btn-primary" type="submit" value="Signup" />
           </form>
      
-          <p>Already have an account? <Link to={"/login"}>Log in</Link>
-          </p>
+          <p className="form-text">Already have an account? <Link to={"/login"}>Log in</Link></p>
      
         </div>
       )
