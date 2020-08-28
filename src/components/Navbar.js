@@ -25,8 +25,8 @@ class myNav extends Component {
       }
 
     return (
-        <Navbar bg="light" expand="lg">
-        <Navbar.Brand to="/"><NavLink to="/" className="nav-link"><FontAwesomeIcon icon={faHome}/></NavLink></Navbar.Brand>
+        <Navbar className="navbar" expand="lg">
+        <Navbar.Brand to="/"><NavLink to="/"><FontAwesomeIcon icon={faHome}/></NavLink></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
               {authLink}
