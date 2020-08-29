@@ -1,3 +1,20 @@
+.navbar {
+  background-color: #e4f9f5;
+}
+
+.general-bg {
+  background-color: #30e3ca;
+  height: 100%;
+  color: white;
+}
+
+.landing {
+  background-image: url("./img/home.jpg"); 
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+}
+
 .home-links {
   list-style-type: none;
   display: flex;
@@ -40,12 +57,30 @@
 }
 
 .profile-pic {
-  width: 25%;
+  width: 30%;
+  border-radius: 100%;
 }
 
 .profile {
   display: flex;
   flex-direction: column;
 	justify-content: center;
-	align-items: center;
+  align-items: center
+}
+
+.book-cover {
+  width: 60%;
+}
+
+.book-details {
+  background-color: #30e3ca;
+  height: 100%;
+  color: white;
+}
+
+.book-details-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
 }

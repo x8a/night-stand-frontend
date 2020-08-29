@@ -8,7 +8,7 @@ class NewBook extends Component {
       title: '', 
       author: '',
       description: '',
-      status: ''
+      status: 'pending'
     };
   }
 

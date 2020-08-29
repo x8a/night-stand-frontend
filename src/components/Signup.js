@@ -42,7 +42,7 @@ class Signup extends Component {
  
   render(){
     return(
-        <div>
+        <div className="general-bg">
           <form onSubmit={this.handleFormSubmit} className="forms" >
             <div className="form-group">
             <label>Username</label>
@@ -64,7 +64,7 @@ class Signup extends Component {
             <input className="form-control" type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
             </div>
             
-            <input className="btn btn-primary" type="submit" value="Signup" />
+            <input className="btn btn-info" type="submit" value="Signup" />
           </form>
      
           <p className="form-text">Already have an account? <Link to={"/login"}>Log in</Link></p>
