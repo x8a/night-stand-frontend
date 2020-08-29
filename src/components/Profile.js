@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class Profile extends Component {
     constructor(){
@@ -8,7 +9,7 @@ export default class Profile extends Component {
     }
 
     getUserBooks = () =>{
-        axios.get(`${process.env.REACT_APP_API_URL}/profile`)
+        axios.get(`${process.env.REACT_APP_API_URL}/profile`, {withCredentials: true})
         .then(response => {
           this.setState({
             books: response.data
@@ -21,19 +22,26 @@ export default class Profile extends Component {
     }
 
     render() {
-        console.log(this.props)
-        console.log(this.state.books)
-
         let booksReading = ""
 
         if (this.props.loggedInUser.books.length !== 0) {
-            booksReading = (
-                <div className="profile">
-                <h3>Reading</h3>
-                <p>My book</p>
-                </div>
-            );
-          }
+            const pending = this.state.books.filter(el => {return el.status === 'pending'})
+            if(pending.length > 0) {
+                const reading = pending.map(book => {return (
+                    <Link style={{ textDecoration: 'none' }} to={`/book/${book._id}`} key={book._id}>
+                    <p>{book.title} by {book.author}</p>
+                    </Link>
+                    )}
+                )
+
+                booksReading = (
+                    <div className="profile">
+                    <h3>Reading</h3>
+                    {reading}
+                    </div>
+                )
+            }
+        }
 
         return (
             <div className="general-bg">

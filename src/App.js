@@ -9,6 +9,7 @@ import Profile from "./components/Profile";
 import NewBook from "./components/NewBook";
 import ProtectedRoute from "./auth/protected-route";
 import Nav from "./components/Navbar";
+import Reading from "./components/BookDetail";
 
 class App extends Component {
   constructor(props) {
@@ -65,6 +66,10 @@ class App extends Component {
             path="/create/pending"
             user={this.state.loggedInUser}
             component={NewBook}
+          />
+          <Route
+          path="/book/:id"
+          render={(props) => <Reading {...props} user={this.state.loggedInUser} />}
           />
         </Switch>
       </div>
