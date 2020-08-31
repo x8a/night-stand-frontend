@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 
-export default class Reading extends Component {
+export default class BookDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -46,7 +46,7 @@ export default class Reading extends Component {
 
     render() {
         return (
-            <div className="book-details">
+            <div className="book-details pt-3">
                 <div className="book-details-intro">
                     <h1>{this.state.title}</h1>
                     <p>{this.state.author}</p>
@@ -56,9 +56,9 @@ export default class Reading extends Component {
                     <div className="form-group">
                         <label>Status</label>
                         <select className="form-control" value={this.state.status} name="status" onChange={ e => this.handleChange(e)}>
-                            <option value="pending">Pending</option>
-                            <option value="reading">In progress</option>
-                            <option value="finished">Finished</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Reading">In progress</option>
+                            <option value="Finished">Finished</option>
                         </select>
                     </div>
                     <div className="form-group">

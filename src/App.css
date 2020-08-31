@@ -1,10 +1,14 @@
 .navbar {
   background-color: #e4f9f5;
+  font-size: 17px;
+}
+
+.empty {
+  padding-top: 90px;
 }
 
 .general-bg {
   background-color: #30e3ca;
-  height: 100%;
   color: white;
 }
 
@@ -54,6 +58,11 @@
 
 .form-text {
   text-align: center;
+}
+
+.edit-profile {
+  text-align: right;
+  margin-right: 30px;
 }
 
 .profile-pic {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 
 export default class Profile extends Component {
     constructor(){
@@ -9,7 +10,7 @@ export default class Profile extends Component {
     }
 
     getUserBooks = () =>{
-        axios.get(`${process.env.REACT_APP_API_URL}/profile`, {withCredentials: true})
+        axios.get(`${process.env.REACT_APP_API_URL}/books`, {withCredentials: true})
         .then(response => {
           this.setState({
             books: response.data
@@ -22,34 +23,42 @@ export default class Profile extends Component {
     }
 
     render() {
-        let booksReading = ""
+        let bookList = ""
 
         if (this.props.loggedInUser.books.length !== 0) {
-            const pending = this.state.books.filter(el => {return el.status === 'pending'})
-            if(pending.length > 0) {
-                const reading = pending.map(book => {return (
-                    <Link style={{ textDecoration: 'none' }} to={`/book/${book._id}`} key={book._id}>
-                    <p>{book.title} by {book.author}</p>
-                    </Link>
-                    )}
-                )
+          const myBooks = this.state.books.map((book) => {
+            return (
+              <div key={book._id} className="mt-3">
+                <Link style={{ color: "white" }} to={`/book/${book._id}`}>
+                <Card className="card" style={{ width: "18rem", backgroundColor: "#30e3ca"}}>                  
+                <Card.Body>
+                <img src={book.pic} style={{ width: "40%", float: "right"}} alt="Book cover"/>
+                    <Card.Title>{book.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{book.author}</Card.Subtitle>
+                    <Card.Text>
+                    {book.status}
+                    </Card.Text>
+                  </Card.Body>                  
+                </Card>
+                </Link>
+              </div>
+            );
+          });
 
-                booksReading = (
-                    <div className="profile">
-                    <h3>Reading</h3>
-                    {reading}
-                    </div>
-                )
-            }
+          bookList = (
+            <div className="profile">
+              {myBooks}
+            </div>
+          );
         }
 
         return (
-            <div className="general-bg">
-                <div className="profile pt-3">
-                    <img className="profile-pic" src={this.props.loggedInUser.pic} alt="Profile pic"/>
-                    <p>{this.props.loggedInUser.name} {this.props.loggedInUser.lastName}</p>
+            <div className="general-bg pt-3">
+                <div className="forms">
+                    <Link to="/create/pending" className="btn btn-info">Add book</Link>
                 </div>
-                {booksReading}
+                {bookList}
+                <div className="empty"></div>
             </div>
         )
     }

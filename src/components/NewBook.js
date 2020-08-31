@@ -8,7 +8,7 @@ class NewBook extends Component {
       title: '', 
       author: '',
       description: '',
-      status: 'pending'
+      status: 'Pending'
     };
   }
 
@@ -36,7 +36,7 @@ class NewBook extends Component {
  
   render(){
     return(
-        <div>
+        <div className="general-bg" style={{height: "100%"}}>
           <form onSubmit={this.handleFormSubmit} className="forms" >
             <div className="form-group">
             <label>Title</label>
@@ -56,13 +56,13 @@ class NewBook extends Component {
             <div className="form-group">
             <label>Status</label>
             <select className="form-control" value={this.state.status} name="status" onChange={ e => this.handleChange(e)}>
-                <option value="pending">Pending</option>
-                <option value="reading">In progress</option>
-                <option value="finished">Finished</option>
+                <option value="Pending">Pending</option>
+                <option value="Reading">In progress</option>
+                <option value="Finished">Finished</option>
             </select>
             </div>
             
-            <input className="btn btn-primary" type="submit" value="Add book" />
+            <input className="btn btn-info" type="submit" value="Add book" />
           </form>
      
         </div>
