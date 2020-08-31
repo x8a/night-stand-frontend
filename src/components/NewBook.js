@@ -36,7 +36,7 @@ class NewBook extends Component {
  
   render(){
     return(
-        <div className="general-bg" style={{height: "100%"}}>
+        <div className="general-bg" style={{height: "100%", color: "#393b44"}}>
           <form onSubmit={this.handleFormSubmit} className="forms" >
             <div className="form-group">
             <label>Title</label>

@@ -10,11 +10,11 @@ class myNav extends Component {
   
     if (this.props.user) {
         authLink = (
-          <Nav className="">
-            <NavLink to="/reading" className="nav-link">Reading</NavLink>
-            <NavLink to="/pending" className="nav-link">Pending</NavLink>
-            <NavLink to="/read" className="nav-link">Finished</NavLink>
-            <NavLink to="/edit/profile" className="nav-link"><FontAwesomeIcon style={{ color: '#30e3ca' }} icon={faUserCircle} size="2x"/></NavLink>
+          <Nav >
+            <NavLink style={{color: "white"}} to="/reading" className="nav-link">Reading</NavLink>
+            <NavLink style={{color: "white"}} to="/pending" className="nav-link">Pending</NavLink>
+            <NavLink style={{color: "white"}} to="/read" className="nav-link">Finished</NavLink>
+            <NavLink to="/edit/profile" className="nav-link"><FontAwesomeIcon style={{ color: 'white' }} icon={faUserCircle} size="2x"/></NavLink>
           </Nav>
         );
     }
@@ -23,7 +23,7 @@ class myNav extends Component {
 
     return (
         <Navbar className="navbar" fixed="bottom">
-        <Navbar.Brand><NavLink style={{ color: '#30e3ca' }} to={this.props.user ? '/profile' : '/'}><FontAwesomeIcon icon={faHome} size="2x"/></NavLink></Navbar.Brand>
+        <Navbar.Brand><NavLink style={{ color: 'white' }} to={this.props.user ? '/profile' : '/'}><FontAwesomeIcon icon={faHome} size="2x"/></NavLink></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
               {authLink}

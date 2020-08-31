@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #e4f9f5;
+  background-color: #3b6978;
   font-size: 17px;
 }
 
@@ -8,7 +8,7 @@
 }
 
 .general-bg {
-  background-color: #30e3ca;
+  background-color: #dae1e7;
   color: white;
 }
 
@@ -82,9 +82,9 @@
 }
 
 .book-details {
-  background-color: #30e3ca;
+  background-color: #dae1e7;
   height: 100%;
-  color: white;
+  color: #393b44;
 }
 
 .book-details-intro {

@@ -37,7 +37,7 @@ export default class EditProfile extends Component {
 
     render() {
         return (
-            <div className="general-bg" style={{height: "100%"}}>
+            <div className="general-bg" style={{height: "100%", color: "#393b44"}}>
             <div className="profile pt-3">
                 <img className="profile-pic" src={this.state.pic} alt="Profile pic"/>
             </div>

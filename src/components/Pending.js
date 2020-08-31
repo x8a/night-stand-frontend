@@ -30,13 +30,13 @@ export default class Pending extends Component {
             if(pending.length > 0) {
                 const reading = pending.map(book => {return (
                     <div key={book._id} className="mt-3">
-                    <Link style={{ color: "white" }} to={`/book/${book._id}`}>
-                    <Card className="card" style={{ width: "18rem", backgroundColor: "#30e3ca"}}>                  
-                    <Card.Body>
+                    <Link style={{ color: "#393b44" }} to={`/book/${book._id}`}>
+                    <Card className="card" style={{ width: "18rem", backgroundColor: "#f1f3f8"}}>                  
+                    <Card.Body style={{color: "#393b44"}}>
                     <img src={book.pic} style={{ width: "40%", float: "right"}} alt="Book cover"/>
                         <Card.Title>{book.title}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{book.author}</Card.Subtitle>
-                        <Card.Text>
+                        <Card.Text style={{backgroundColor: "red", width: "60px"}}>
                         {book.status}
                         </Card.Text>
                       </Card.Body>                  
@@ -48,7 +48,7 @@ export default class Pending extends Component {
 
                 booksPending = (
                     <div className="profile">
-                    <h3>Pending</h3>
+                    <h3 style={{color: "#393b44"}}>Pending</h3>
                     {reading}
                     </div>
                 )
