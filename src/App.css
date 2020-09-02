@@ -4,7 +4,7 @@
 }
 
 .empty {
-  padding-top: 90px;
+  padding: 50px 0px;
 }
 
 .general-bg {
@@ -66,8 +66,8 @@
 }
 
 .profile-pic {
-  width: 30%;
-  border-radius: 100%;
+  width: 50%;
+  border-radius: 48%;
 }
 
 .profile {
@@ -92,4 +92,5 @@
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
+  text-align: center
 }

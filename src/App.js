@@ -14,6 +14,7 @@ import Reading from "./components/Reading";
 import Pending from "./components/Pending";
 import Read from "./components/Read";
 import EditProfile from "./components/EditProfile";
+import NavbarTop from "./components/NavbarTop";
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class App extends Component {
     return (
       <div>
         <Nav user={this.state.loggedInUser} />
+        <NavbarTop />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route

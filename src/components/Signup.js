@@ -42,32 +42,33 @@ class Signup extends Component {
  
   render(){
     return(
-        <div className="general-bg" style={{height: "100%", color: "#393b44"}}>
+        <div className="general-bg" style={{height: "100%", color: "#393b44" , paddingTop: "90px"}}>
           <form onSubmit={this.handleFormSubmit} className="forms" >
             <div className="form-group">
             <label>Username</label>
-            <input className="form-control" type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+            <input className="form-control" type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)} required/>
             </div>
 
             <div className="form-group">
             <label>Name</label>
-            <input className="form-control" type="text" name="name" value={this.state.name} onChange={ e => this.handleChange(e)} />
+            <input className="form-control" type="text" name="name" value={this.state.name} onChange={ e => this.handleChange(e)} required />
             </div>
 
             <div className="form-group">
             <label>Last Name</label>
-            <input className="form-control" type="text" name="lastName" value={this.state.lastName} onChange={ e => this.handleChange(e)} />
+            <input className="form-control" type="text" name="lastName" value={this.state.lastName} onChange={ e => this.handleChange(e)} required/>
             </div>
 
             <div className="form-group">
             <label>Password</label>
-            <input className="form-control" type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+            <input className="form-control" type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} required/>
+            <small className="form-text text-muted">Your password must contain 7 characters</small>
             </div>
             
-            <input className="btn btn-info" type="submit" value="Signup" />
+            <input style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" value="Signup" />
           </form>
      
-          <p className="form-text">Already have an account? <Link to={"/login"}>Log in</Link></p>
+          <p className="form-text">Already have an account? <Link style={{color: "#3b6978"}} to={"/login"}>Log in</Link></p>
      
         </div>
       )

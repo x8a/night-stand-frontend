@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 export default class BookDetail extends Component {
     constructor(props) {
@@ -46,7 +47,7 @@ export default class BookDetail extends Component {
 
     render() {
         return (
-            <div className="book-details pt-3">
+            <div className="book-details" style={{paddingTop: "70px"}}>
                 <div className="book-details-intro">
                     <h1>{this.state.title}</h1>
                     <p>{this.state.author}</p>
@@ -63,11 +64,12 @@ export default class BookDetail extends Component {
                     </div>
                     <div className="form-group">
                     <label>Description</label>
-                    <textarea rows="5" className="form-control" name="description" value={this.state.description} onChange={ e => this.handleChange(e)} />
+                    <textarea rows="3" className="form-control" name="description" value={this.state.description} onChange={ e => this.handleChange(e)} />
                     </div>
                     
-                    <input className="btn btn-info" type="submit" value="Save" />
+                    <input style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" value="Save changes" />
                     </form>
+                <p className="edit-profile"><Link style={{height: "48px", fontSize: "20px"}} to="/profile" className="btn btn-danger">Go back</Link></p>
             </div>
         )
     }

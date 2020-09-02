@@ -56,8 +56,9 @@ export default class Reading extends Component {
         }
 
         return (
-            <div className="general-bg pt-3" style={{height: "100%"}}>
+            <div className="general-bg" style={{height: "100%", paddingTop: "90px"}}>
                 {booksReading}
+                <div className="empty"></div>
             </div>
         )
     }

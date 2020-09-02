@@ -56,8 +56,9 @@ export default class Read extends Component {
         }
 
         return (
-            <div className="general-bg pt-3" style={{height: "100%"}}>
+            <div className="general-bg" style={{height: "100%", paddingTop: "90px"}}>
                 {booksFinished}
+                <div className="empty"></div>
             </div>
         )
     }

@@ -36,7 +36,7 @@ export default class Pending extends Component {
                     <img src={book.pic} style={{ width: "40%", float: "right"}} alt="Book cover"/>
                         <Card.Title>{book.title}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{book.author}</Card.Subtitle>
-                        <Card.Text style={{backgroundColor: "red", width: "60px"}}>
+                        <Card.Text>
                         {book.status}
                         </Card.Text>
                       </Card.Body>                  
@@ -56,8 +56,9 @@ export default class Pending extends Component {
         }
 
         return (
-            <div className="general-bg pt-3" style={{height: "100%"}}>
+            <div className="general-bg" style={{height: "100%", paddingTop: "90px"}}>
                 {booksPending}
+                <div className="empty"></div>
             </div>
         )
     }

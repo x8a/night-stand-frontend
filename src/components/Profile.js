@@ -53,7 +53,8 @@ export default class Profile extends Component {
         }
 
         return (
-            <div className="general-bg pt-3">
+            <div className="general-bg" style={{height: "100%"}}>
+                <div className="empty"></div>
                 <div className="forms" >
                     <Link style={{height: "48px", fontSize: "20px"}} to="/create/pending" className="btn btn-info">Add book</Link>
                 </div>
