@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { Card } from 'react-bootstrap';
  
 class NewBook extends Component {
   constructor(props){
@@ -11,9 +12,11 @@ class NewBook extends Component {
       title: '', 
       author: '',
       description: '',
+      pic: '',
       status: 'Pending',
       search: '',
-      searchResults: []
+      searchResults: [],
+      selectedBook: {}
     };
   }
 
@@ -23,7 +26,7 @@ class NewBook extends Component {
   }
 
   handleSearch = () => {
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.search}&key=${process.env.GOOGLE_KEY}`)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.search}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
     .then(res => {
       this.setState({
         ...this.state,
@@ -40,6 +43,7 @@ class NewBook extends Component {
       title: this.state.title,
       author: this.state.author,
       description: this.state.description,
+      pic: this.state.pic ? this.state.pic : "",
       status: this.state.status,
       reader: this.props.loggedInUser._id
     };
@@ -50,81 +54,50 @@ class NewBook extends Component {
       })
       .catch((error) => console.log(error));
   };
+
+  selectBook = event => {
+    const myBook = this.state.searchResults.find(book => book.id === event.currentTarget.id)
+    this.setState({
+      ...this.state,
+      title: myBook.volumeInfo.title,
+      author: myBook.volumeInfo.authors ? myBook.volumeInfo.authors[0] : "Unknown",
+      pic: myBook.volumeInfo.imageLinks ? myBook.volumeInfo.imageLinks.thumbnail : "",
+      description: myBook.volumeInfo.description ? myBook.volumeInfo.description : "",
+      selectedBook: myBook
+    });
+  }
  
   render(){
 
-    let results = ""
+    let resultsCards = ""
 
     if (this.state.searchResults.length !== 0) {
-      console.log(this.state.searchResults)
-      results = this.state.searchResults.map(book => {
+      resultsCards = this.state.searchResults.map(book => {
         return (
-          <option key={book.id}>{book.volumeInfo.title} {book.volumeInfo.authors? `- ${book.volumeInfo.authors[0]}` : ""}</option>
+                <Card onClick={(e) => this.selectBook(e)} className="mt-3" key={book.id} id={book.id} style={{ backgroundColor: "#f1f3f8", margin: "0px 30px"}}>                  
+                <Card.Body style={{color: "#393b44"}}>
+                {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} style={{ width: "40%", float: "right"}} alt="Book cover"/> : ""}
+                    <Card.Title>{book.volumeInfo.title}</Card.Title>
+                    {book.volumeInfo.authors? <Card.Subtitle className="mb-2 text-muted">{book.volumeInfo.authors[0]}</Card.Subtitle> : ""}
+                    {book.volumeInfo.description ? <Card.Text>{book.volumeInfo.description}</Card.Text> : "" }
+                  </Card.Body>                  
+                </Card>
         )
       })
     }
 
-    return (
-      <div
-        className="general-bg"
-        style={{ height: "100%", color: "#393b44", paddingTop: "90px" }}
-      >
-        <form className="forms">
-          <div className="input-group">
-            <input
-              className="form-control"
-              type="text"
-              name="search"
-              placeholder="Search for a book"
-              value={this.state.search}
-              onChange={(e) => this.handleChange(e)}
-            />
-            <div className="input-group-append">
-              <span onClick={(e) => this.handleSearch(e)} className="input-group-text">
-                <FontAwesomeIcon icon={faSearch} />
-              </span>
-            </div>
-          </div>
-          <div className="form-group">
-              <select className="form-control">
-                {results}
-              </select>
-          </div>
-        </form>
-
-        <form onSubmit={this.handleFormSubmit} className="forms">
-          <div className="form-group">
-            <label>Title</label>
-            <input
-              className="form-control"
-              type="text"
-              name="title"
-              value={this.state.title}
-              onChange={(e) => this.handleChange(e)}
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Author</label>
-            <input
-              className="form-control"
-              type="text"
-              name="author"
-              value={this.state.author}
-              onChange={(e) => this.handleChange(e)}
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Description</label>
-            <textarea
-              className="form-control"
-              name="description"
-              value={this.state.description}
-              onChange={(e) => this.handleChange(e)}
-            />
-          </div>
-
+    if(this.state.title) {
+      resultsCards = 
+        (       <div>
+                <Card className="mt-3" key={this.state.selectedBook.volumeInfo.id} id={this.state.selectedBook.volumeInfo.id} style={{backgroundColor: "#f1f3f8", margin: "0px 30px"}}>                  
+                <Card.Body style={{color: "#393b44"}}>
+                {this.state.selectedBook.volumeInfo.imageLinks ? <img src={this.state.selectedBook.volumeInfo.imageLinks.thumbnail} style={{ width: "40%", float: "right"}} alt="Book cover"/> : ""}
+                    <Card.Title>{this.state.selectedBook.volumeInfo.title}</Card.Title>
+                    {this.state.selectedBook.volumeInfo.authors? <Card.Subtitle className="mb-2 text-muted">{this.state.selectedBook.volumeInfo.authors[0]}</Card.Subtitle> : ""}
+                    {this.state.selectedBook.volumeInfo.description ? <Card.Text>{this.state.selectedBook.volumeInfo.description}</Card.Text> : "" }
+                  </Card.Body>                  
+                </Card>
+                <form onSubmit={this.handleFormSubmit} className="forms">
           <div className="form-group">
             <label>Status</label>
             <select
@@ -155,6 +128,35 @@ class NewBook extends Component {
             Cancel
           </Link>
         </p>
+        </div>
+        )
+    }
+
+    return (
+      <div
+        className="general-bg"
+        style={{ height: "100%", color: "#393b44", paddingTop: "90px" }}
+      >
+        <form className="forms">
+          <div className="input-group">
+            <input
+              className="form-control"
+              type="text"
+              name="search"
+              placeholder="Search for a book"
+              value={this.state.search}
+              onChange={(e) => this.handleChange(e)}
+            />
+            <div className="input-group-append">
+              <span onClick={(e) => this.handleSearch(e)} className="input-group-text">
+                <FontAwesomeIcon icon={faSearch} />
+              </span>
+            </div>
+          </div>
+        </form>
+
+        {resultsCards}
+        <div className="empty"></div>
       </div>
     );
   }
