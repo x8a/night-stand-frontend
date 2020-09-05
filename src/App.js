@@ -89,7 +89,7 @@ class App extends Component {
             component={Read}
           />
           <ProtectedRoute
-            exact path="/create/pending"
+            exact path="/create"
             user={this.state.loggedInUser}
             component={NewBook}
           />

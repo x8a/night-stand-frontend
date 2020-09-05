@@ -16,7 +16,7 @@ class myNav extends Component {
         authLink = (
           <Nav>
             <NavLink style={{ color: 'white' }} to={this.props.user ? '/profile' : '/'} className="nav-link"><FontAwesomeIcon icon={faHome} size="2x"/></NavLink>
-            <NavLink style={{color: "white", paddingLeft: "100px"}} to="/create/pending" className="nav-link"><FontAwesomeIcon icon={faSearchPlus} size="2x"/></NavLink>
+            <NavLink style={{color: "white", paddingLeft: "100px"}} to="/create" className="nav-link"><FontAwesomeIcon icon={faSearchPlus} size="2x"/></NavLink>
             <NavLink style={{color: "white", paddingLeft: "100px"}} to="/edit/profile" className="nav-link"><FontAwesomeIcon icon={faUserCircle} size="2x"/></NavLink>
           </Nav>
         );

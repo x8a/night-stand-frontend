@@ -61,7 +61,7 @@ class NewBook extends Component {
       reader: this.props.loggedInUser._id
     };
     axios
-      .post(`${process.env.REACT_APP_API_URL}/create/pending`, body, {withCredentials:true})
+      .post(`${process.env.REACT_APP_API_URL}/create`, body, {withCredentials:true})
       .then(() => {
         this.props.history.push('/profile')
       })
