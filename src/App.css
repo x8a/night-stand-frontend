@@ -43,10 +43,6 @@
   padding: 20px 30px;
 }
 
-.nav-link {
-  text-align: right;
-}
-
 .forms {
   display: flex;
 	flex-direction: column;
@@ -78,12 +74,11 @@
 }
 
 .book-cover {
-  width: 60%;
+  width: 40%;
 }
 
 .book-details {
   background-color: #dae1e7;
-  height: 100%;
   color: #393b44;
 }
 

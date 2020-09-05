@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import SegmentedControl from "./SegmentedControl";
 
 export default class Read extends Component {
     constructor(){
@@ -48,7 +49,6 @@ export default class Read extends Component {
 
                 booksFinished = (
                     <div className="profile">
-                    <h3 style={{color: "#393b44"}}>Finished</h3>
                     {booksList}
                     </div>
                 )
@@ -56,7 +56,8 @@ export default class Read extends Component {
         }
 
         return (
-            <div className="general-bg" style={{height: "100%", paddingTop: "90px"}}>
+            <div className="general-bg" style={{minHeight: "100%", paddingTop: "90px"}}>
+                <SegmentedControl />
                 {booksFinished}
                 <div className="empty"></div>
             </div>

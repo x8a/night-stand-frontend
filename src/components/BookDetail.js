@@ -47,7 +47,7 @@ export default class BookDetail extends Component {
 
     render() {
         return (
-            <div className="book-details" style={{paddingTop: "70px"}}>
+            <div className="book-details" style={{minHeight: "100%", paddingTop: "70px"}}>
                 <div className="book-details-intro">
                     <h1>{this.state.title}</h1>
                     <p>{this.state.author}</p>
@@ -68,8 +68,9 @@ export default class BookDetail extends Component {
                     </div>
                     
                     <input style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" value="Save changes" />
+                    <p style={{textAlign: "right", paddingTop: "10px"}}><Link style={{height: "48px", fontSize: "20px"}} to="/profile" className="btn btn-danger">Go back</Link></p>
+                    <div className="empty"></div>
                     </form>
-                <p className="edit-profile"><Link style={{height: "48px", fontSize: "20px"}} to="/profile" className="btn btn-danger">Go back</Link></p>
             </div>
         )
     }

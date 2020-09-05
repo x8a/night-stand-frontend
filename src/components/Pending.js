@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import SegmentedControl from "./SegmentedControl";
 
 export default class Pending extends Component {
     constructor(){
@@ -48,7 +49,6 @@ export default class Pending extends Component {
 
                 booksPending = (
                     <div className="profile">
-                    <h3 style={{color: "#393b44"}}>Pending</h3>
                     {reading}
                     </div>
                 )
@@ -56,7 +56,8 @@ export default class Pending extends Component {
         }
 
         return (
-            <div className="general-bg" style={{height: "100%", paddingTop: "90px"}}>
+            <div className="general-bg" style={{minHeight: "100%", paddingTop: "90px"}}>
+                <SegmentedControl />
                 {booksPending}
                 <div className="empty"></div>
             </div>

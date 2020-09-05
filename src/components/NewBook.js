@@ -14,7 +14,8 @@ class NewBook extends Component {
       description: '',
       pic: '',
       status: 'Pending',
-      search: '',
+      searchTitle: '',
+      searchAuthor: '',
       searchResults: [],
       selectedBook: {}
     };
@@ -25,8 +26,20 @@ class NewBook extends Component {
     this.setState({[name]: value});
   }
 
-  handleSearch = () => {
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.search}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
+  handleSearchTitle = () => {
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchTitle}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
+    .then(res => {
+      this.setState({
+        ...this.state,
+        searchResults: res.data.items,
+      });
+    })
+    .catch((error) => console.log(error));
+
+  }
+
+  handleSearchAuthor = () => {
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${this.state.searchAuthor}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
     .then(res => {
       this.setState({
         ...this.state,
@@ -79,7 +92,6 @@ class NewBook extends Component {
                 {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} style={{ width: "40%", float: "right"}} alt="Book cover"/> : ""}
                     <Card.Title>{book.volumeInfo.title}</Card.Title>
                     {book.volumeInfo.authors? <Card.Subtitle className="mb-2 text-muted">{book.volumeInfo.authors[0]}</Card.Subtitle> : ""}
-                    {book.volumeInfo.description ? <Card.Text>{book.volumeInfo.description}</Card.Text> : "" }
                   </Card.Body>                  
                 </Card>
         )
@@ -135,20 +147,36 @@ class NewBook extends Component {
     return (
       <div
         className="general-bg"
-        style={{ height: "100%", color: "#393b44", paddingTop: "90px" }}
+        style={{ minHeight: "100%", color: "#393b44", paddingTop: "90px" }}
       >
         <form className="forms">
           <div className="input-group">
             <input
               className="form-control"
               type="text"
-              name="search"
-              placeholder="Search for a book"
+              name="searchTitle"
+              placeholder="Search by title"
               value={this.state.search}
               onChange={(e) => this.handleChange(e)}
             />
             <div className="input-group-append">
-              <span onClick={(e) => this.handleSearch(e)} className="input-group-text">
+              <span onClick={(e) => this.handleSearchTitle(e)} className="input-group-text">
+                <FontAwesomeIcon icon={faSearch} />
+              </span>
+            </div>
+          </div>
+
+          <div className="input-group">
+            <input
+              className="form-control"
+              type="text"
+              name="searchAuthor"
+              placeholder="Search by author"
+              value={this.state.search}
+              onChange={(e) => this.handleChange(e)}
+            />
+            <div className="input-group-append">
+              <span onClick={(e) => this.handleSearchAuthor(e)} className="input-group-text">
                 <FontAwesomeIcon icon={faSearch} />
               </span>
             </div>

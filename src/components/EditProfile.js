@@ -57,7 +57,7 @@ export default class EditProfile extends Component {
 
     render() {
         return (
-            <div className="general-bg" style={{height: "100%", color: "#393b44", paddingTop: "80px"}}>
+            <div className="general-bg" style={{minHeight: "100%", color: "#393b44", paddingTop: "80px"}}>
             <div className="profile pt-3">
                 <img className="profile-pic" src={this.state.pic} alt="Profile pic"/>
             </div>

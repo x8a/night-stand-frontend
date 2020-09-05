@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import SegmentedControl from "./SegmentedControl";
 
 export default class Profile extends Component {
     constructor(){
@@ -53,11 +54,8 @@ export default class Profile extends Component {
         }
 
         return (
-            <div className="general-bg" style={{height: "100%"}}>
-                <div className="empty"></div>
-                <div className="forms" >
-                    <Link style={{height: "48px", fontSize: "20px"}} to="/create/pending" className="btn btn-info">Add book</Link>
-                </div>
+            <div className="general-bg" style={{minHeight: "100%", paddingTop: "90px"}}>
+                <SegmentedControl />
                 {bookList}
                 <div className="empty"></div>
             </div>
