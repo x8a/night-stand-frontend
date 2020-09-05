@@ -39,6 +39,7 @@ class Login extends Component {
               name="username"
               value={this.state.username}
               onChange={(e) => this.handleChange(e)}
+              required
             />
           </div>
 
@@ -50,10 +51,11 @@ class Login extends Component {
               name="password"
               value={this.state.password}
               onChange={(e) => this.handleChange(e)}
+              required
             />
           </div>
 
-          <input style={{height: "48px", fontSize: "20px"}} className="btn btn-secondary" type="submit" value="Login" />
+          <input style={{height: "48px", fontSize: "20px"}} className="btn btn-secondary" type="submit" value="Login"/>
         </form>
         <p className="form-text">
           Don't have an account? <Link style={{color: "#3b6978"}} to={'/signup'}>Signup</Link>
