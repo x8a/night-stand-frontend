@@ -1,10 +1,14 @@
 .navbar {
-  background-color: #e4f9f5;
+  background-color: #3b6978;
+  font-size: 17px;
+}
+
+.empty {
+  padding: 50px 0px;
 }
 
 .general-bg {
-  background-color: #30e3ca;
-  height: 100%;
+  background-color: #dae1e7;
   color: white;
 }
 
@@ -39,10 +43,6 @@
   padding: 20px 30px;
 }
 
-.nav-link {
-  text-align: right;
-}
-
 .forms {
   display: flex;
 	flex-direction: column;
@@ -56,9 +56,14 @@
   text-align: center;
 }
 
+.edit-profile {
+  text-align: right;
+  margin-right: 30px;
+}
+
 .profile-pic {
-  width: 30%;
-  border-radius: 100%;
+  width: 50%;
+  border-radius: 48%;
 }
 
 .profile {
@@ -69,13 +74,12 @@
 }
 
 .book-cover {
-  width: 60%;
+  width: 40%;
 }
 
 .book-details {
-  background-color: #30e3ca;
-  height: 100%;
-  color: white;
+  background-color: #dae1e7;
+  color: #393b44;
 }
 
 .book-details-intro {
@@ -83,4 +87,5 @@
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
+  text-align: center
 }

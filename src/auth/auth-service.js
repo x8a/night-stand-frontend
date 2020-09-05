@@ -14,6 +14,11 @@ class AuthService {
       .then((response) => response.data);
   }
 
+  upload = (pic) => {
+    return this.service.post('/upload', pic)
+      .then((response) => response.data);
+  };
+
   loggedin = () => {
     return this.service.get('/loggedin')
     .then(response => response.data)

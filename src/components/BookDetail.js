@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
-export default class Reading extends Component {
+export default class BookDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -46,7 +47,7 @@ export default class Reading extends Component {
 
     render() {
         return (
-            <div className="book-details">
+            <div className="book-details" style={{minHeight: "100%", paddingTop: "70px"}}>
                 <div className="book-details-intro">
                     <h1>{this.state.title}</h1>
                     <p>{this.state.author}</p>
@@ -56,17 +57,19 @@ export default class Reading extends Component {
                     <div className="form-group">
                         <label>Status</label>
                         <select className="form-control" value={this.state.status} name="status" onChange={ e => this.handleChange(e)}>
-                            <option value="pending">Pending</option>
-                            <option value="reading">In progress</option>
-                            <option value="finished">Finished</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Reading">In progress</option>
+                            <option value="Finished">Finished</option>
                         </select>
                     </div>
                     <div className="form-group">
                     <label>Description</label>
-                    <textarea rows="5" className="form-control" name="description" value={this.state.description} onChange={ e => this.handleChange(e)} />
+                    <textarea rows="3" className="form-control" name="description" value={this.state.description} onChange={ e => this.handleChange(e)} />
                     </div>
                     
-                    <input className="btn btn-info" type="submit" value="Save" />
+                    <input style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" value="Save changes" />
+                    <p style={{textAlign: "right", paddingTop: "10px"}}><Link style={{height: "48px", fontSize: "20px"}} to="/profile" className="btn btn-danger">Go back</Link></p>
+                    <div className="empty"></div>
                     </form>
             </div>
         )

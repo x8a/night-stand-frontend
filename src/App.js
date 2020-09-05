@@ -8,8 +8,13 @@ import Logout from "./components/Logout";
 import Profile from "./components/Profile";
 import NewBook from "./components/NewBook";
 import ProtectedRoute from "./auth/protected-route";
+import BookDetail from "./components/BookDetail";
 import Nav from "./components/Navbar";
-import Reading from "./components/BookDetail";
+import Reading from "./components/Reading";
+import Pending from "./components/Pending";
+import Read from "./components/Read";
+import EditProfile from "./components/EditProfile";
+import NavbarTop from "./components/NavbarTop";
 
 class App extends Component {
   constructor(props) {
@@ -40,6 +45,7 @@ class App extends Component {
     return (
       <div>
         <Nav user={this.state.loggedInUser} />
+        <NavbarTop />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route
@@ -58,18 +64,38 @@ class App extends Component {
             render={(props) => <Logout {...props} callback={this.getTheUser} />}
           />
           <ProtectedRoute
-            path="/profile"
+            exact path="/profile"
             user={this.state.loggedInUser}
             component={Profile}
           />
           <ProtectedRoute
-            path="/create/pending"
+            exact path="/edit/profile"
+            user={this.state.loggedInUser}
+            component={EditProfile}
+          />
+          <ProtectedRoute
+            exact path="/reading"
+            user={this.state.loggedInUser}
+            component={Reading}
+          />
+          <ProtectedRoute
+            exact path="/pending"
+            user={this.state.loggedInUser}
+            component={Pending}
+          />
+          <ProtectedRoute
+            exact path="/read"
+            user={this.state.loggedInUser}
+            component={Read}
+          />
+          <ProtectedRoute
+            exact path="/create"
             user={this.state.loggedInUser}
             component={NewBook}
           />
           <Route
-          path="/book/:id"
-          render={(props) => <Reading {...props} user={this.state.loggedInUser} />}
+          exact path="/book/:id"
+          render={(props) => <BookDetail {...props} user={this.state.loggedInUser} />}
           />
         </Switch>
       </div>
