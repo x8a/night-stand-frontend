@@ -1,0 +1,89 @@
+import React, { useState, useEffect, useRef } from "react";
+import axios from 'axios'
+
+let autoComplete;
+
+const loadScript = (url, callback) => {
+  let script = document.createElement("script");
+  script.type = "text/javascript";
+
+  if (script.readyState) {
+    script.onreadystatechange = function() {
+      if (script.readyState === "loaded" || script.readyState === "complete") {
+        script.onreadystatechange = null;
+        callback();
+      }
+    };
+  } else {
+    script.onload = () => callback();
+  }
+
+  script.src = url;
+  document.getElementsByTagName("head")[0].appendChild(script);
+};
+
+function handleScriptLoad(updateQuery, autoCompleteRef) {
+  autoComplete = new window.google.maps.places.Autocomplete(
+    autoCompleteRef.current
+  );
+  autoComplete.setFields(["name", "address_components", "formatted_address"]);
+  autoComplete.addListener("place_changed", () =>
+    handlePlaceSelect(updateQuery)
+  );
+}
+
+let name = ''
+
+async function handlePlaceSelect(updateQuery) {
+  const addressObject = autoComplete.getPlace();
+  const address = addressObject.formatted_address;
+  name = addressObject.name;
+  updateQuery(address);
+}
+
+const saveShop = (name, query) => {
+  const body = {
+    store: name,
+    address: query
+  };
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/new-shop`, body, {withCredentials:true})
+    .then()
+    .catch((error) => console.log(error));
+};
+
+
+function AddShop() {
+  const [query, setQuery] = useState("");
+  const autoCompleteRef = useRef(null);
+
+  useEffect(() => {
+    loadScript(
+      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=places`,
+      () => handleScriptLoad(setQuery, autoCompleteRef)
+    );
+  }, []);
+
+  return (
+    <div className="search-location-input general-bg pl-3" style={{ minHeight: "100%", color: "#393b44", paddingTop: "90px" }}>
+      <form className="forms">
+            <div className="form-group">
+            <input className="form-control" type="text"  placeholder="Search for a bookstore" ref={autoCompleteRef} onChange={event => setQuery(event.target.value)} value={query}/>
+            </div>
+      
+            <div className="form-group">
+            <label>Name</label>
+            <input className="form-control" type="text" name="name" onChange={() => null} value={name}/>
+            </div>
+
+            <div className="form-group">
+            <label>Address</label>
+            <input className="form-control" type="text" name="address" onChange={() => null} value={query}/>
+            </div>
+            <button onClick={() => saveShop(name, query)} style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" >Add book store</button>
+      </form>
+    </div>
+  );
+}
+
+export default AddShop;

@@ -89,3 +89,8 @@
   padding-top: 10px;
   text-align: center
 }
+
+.add-shops {
+  display: flex;
+	justify-content: center;
+}
