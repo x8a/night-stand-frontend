@@ -15,6 +15,10 @@ import Pending from "./components/Pending";
 import Read from "./components/Read";
 import EditProfile from "./components/EditProfile";
 import NavbarTop from "./components/NavbarTop";
+import NotFound from "./components/NotFound";
+import Shops from "./components/Shops";
+import AddShop from "./components/AddShop";
+import ShopDetails from "./components/ShopDetails";
 
 class App extends Component {
   constructor(props) {
@@ -97,6 +101,13 @@ class App extends Component {
           exact path="/book/:id"
           render={(props) => <BookDetail {...props} user={this.state.loggedInUser} />}
           />
+          <ProtectedRoute exact path="/my-shops" user={this.state.loggedInUser} component={Shops} />
+          <Route
+          exact path="/my-shops/:id"
+          render={(props) => <ShopDetails {...props} user={this.state.loggedInUser} />}
+          />
+          <ProtectedRoute exact path="/new-shop" user={this.state.loggedInUser} component={AddShop} />
+          <Route component={NotFound}/>
         </Switch>
       </div>
     );

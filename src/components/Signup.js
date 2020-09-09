@@ -69,7 +69,7 @@ class Signup extends Component {
             <label>Password</label>
             <input className="form-control" type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} required/>
             <small className="form-text text-muted">Your password must contain 7 characters</small>
-            <small className="form-text" style={{color: "red"}}>{this.state.error}</small>
+            <small className="form-text pt-2" style={{color: "red"}}>{this.state.error}</small>
             </div>
             
             <input style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" value="Signup" />
