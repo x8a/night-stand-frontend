@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { ButtonGroup, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { ButtonGroup } from 'react-bootstrap';
+import SingleButton from "./SingleButton";
 
 export default class SegmentedControl extends Component {
     render() {
         return (
         <ButtonGroup style={{marginLeft: "45px"}}>
-            <Button variant="secondary"><Link style={{ color: "white" }} to={'/profile'}>All</Link></Button>
-            <Button variant="secondary"><Link style={{ color: "white" }} to={'/reading'}>Reading</Link></Button>
-            <Button variant="secondary"><Link style={{ color: "white" }} to={'/pending'}>Pending</Link></Button>
-            <Button variant="secondary"><Link style={{ color: "white" }} to={'/read'}>Finished</Link></Button>
+            <SingleButton name="All" path='/profile'></SingleButton>
+            <SingleButton name="Reading" path='/reading'></SingleButton>
+            <SingleButton name="Pending" path='/pending'></SingleButton>
+            <SingleButton name="Finished" path='/read'></SingleButton>
         </ButtonGroup>
         )
     }
