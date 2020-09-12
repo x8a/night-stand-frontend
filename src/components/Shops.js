@@ -66,6 +66,7 @@ export default class Shops extends Component {
                 <NavLink to="/new-shop"><FontAwesomeIcon style={{color: '#3b6978'}} size='4x' icon={faPlusCircle} /></NavLink>
                 </div>
                 {myStores}
+                <div className="empty"></div>
             </div>
         )
     }
