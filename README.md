@@ -2,7 +2,7 @@
 An app where users keep track of the books they're reading.
 
 ## Links 
-[Heroku](https://nightstand.herokuapp.com/)
+[Heroku](https://nightstand.herokuapp.com/) & [slides](https://docs.google.com/presentation/d/1cXrJvqdZ1vH8X3vl5aPLNBrjsv4ySSwn6-MybqhiEAE/edit?usp=sharing)
 
 [Jira board](https://x8a.atlassian.net/secure/RapidBoard.jspa?rapidView=1&projectKey=NIGHTSTAND)
 
