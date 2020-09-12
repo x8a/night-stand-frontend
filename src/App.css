@@ -1,3 +1,24 @@
+.navbar {
+  background-color: #3b6978;
+  font-size: 17px;
+}
+
+.empty {
+  padding: 50px 0px;
+}
+
+.general-bg {
+  background-color: #dae1e7;
+  color: white;
+}
+
+.landing {
+  background-image: url("./img/home.jpg"); 
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+}
+
 .home-links {
   list-style-type: none;
   display: flex;
@@ -22,10 +43,6 @@
   padding: 20px 30px;
 }
 
-.nav-link {
-  text-align: right;
-}
-
 .forms {
   display: flex;
 	flex-direction: column;
@@ -39,13 +56,41 @@
   text-align: center;
 }
 
+.edit-profile {
+  text-align: right;
+  margin-right: 30px;
+}
+
 .profile-pic {
-  width: 25%;
+  width: 50%;
+  border-radius: 48%;
 }
 
 .profile {
   display: flex;
   flex-direction: column;
 	justify-content: center;
-	align-items: center;
+  align-items: center
+}
+
+.book-cover {
+  width: 40%;
+}
+
+.book-details {
+  background-color: #dae1e7;
+  color: #393b44;
+}
+
+.book-details-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  text-align: center
+}
+
+.add-shops {
+  display: flex;
+	justify-content: center;
 }

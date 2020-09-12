@@ -2,33 +2,31 @@ import React, { Component } from "react";
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUserCircle, faSearchPlus, faStore } from '@fortawesome/free-solid-svg-icons'
 
 class myNav extends Component {
   render() {
-
     let authLink = (
-        <Nav className="mr-auto">
-        <NavLink to="/signup" className="nav-link">Sign up</NavLink>
-        <NavLink to="/login" className="nav-link">Log in</NavLink>
-        </Nav>
-      );
+      <Nav>
+        <NavLink style={{ color: 'white' }} to={this.props.user ? '/profile' : '/'} className="nav-link"><FontAwesomeIcon icon={faHome} size="2x"/></NavLink>
+      </Nav>
+    );
   
-      if (this.props.user) {
+    if (this.props.user) {
         authLink = (
-          <Nav className="mr-auto">
-            <NavLink to="/profile" className="nav-link">Profile</NavLink>
-            <NavLink to="/create/pending" className="nav-link">Add book</NavLink>
-            <NavLink to="/logout" className="nav-link">Log out</NavLink>
+          <Nav>
+            <NavLink style={{ color: 'white' }} to={this.props.user ? '/profile' : '/'} className="nav-link"><FontAwesomeIcon icon={faHome} size="2x"/></NavLink>
+            <NavLink style={{color: "white", paddingLeft: "50px"}} to="/create" className="nav-link"><FontAwesomeIcon icon={faSearchPlus} size="2x"/></NavLink>
+            <NavLink style={{color: "white", paddingLeft: "50px"}} to="/my-shops" className="nav-link"><FontAwesomeIcon icon={faStore} size="2x"/></NavLink>
+            <NavLink style={{color: "white", paddingLeft: "50px"}} to="/edit/profile" className="nav-link"><FontAwesomeIcon icon={faUserCircle} size="2x"/></NavLink>
           </Nav>
         );
-      }
+    }
 
     return (
-        <Navbar bg="light" expand="lg">
-        <Navbar.Brand to="/"><NavLink to="/" className="nav-link"><FontAwesomeIcon icon={faHome}/></NavLink></Navbar.Brand>
+        <Navbar className="navbar" fixed="bottom">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse>
               {authLink}
         </Navbar.Collapse>
       </Navbar>

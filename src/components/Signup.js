@@ -9,7 +9,8 @@ class Signup extends Component {
       username: '', 
       password: '',
       name: '',
-      lastName: ''
+      lastName: '',
+      error: ''
     };
     this.service = new AuthService();
   }
@@ -37,37 +38,44 @@ class Signup extends Component {
         this.props.getUser(response)
         this.props.history.push('/profile')
     })
-    .catch( error => console.log(error) )
+    .catch( error => {
+      this.setState({
+        ...this.state,
+        error: error.response.data.message
+      })
+    })
   }
  
   render(){
     return(
-        <div>
+        <div className="general-bg" style={{height: "100%", color: "#393b44" , paddingTop: "90px"}}>
           <form onSubmit={this.handleFormSubmit} className="forms" >
             <div className="form-group">
             <label>Username</label>
-            <input className="form-control" type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+            <input className="form-control" type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)} required/>
             </div>
 
             <div className="form-group">
             <label>Name</label>
-            <input className="form-control" type="text" name="name" value={this.state.name} onChange={ e => this.handleChange(e)} />
+            <input className="form-control" type="text" name="name" value={this.state.name} onChange={ e => this.handleChange(e)} required />
             </div>
 
             <div className="form-group">
             <label>Last Name</label>
-            <input className="form-control" type="text" name="lastName" value={this.state.lastName} onChange={ e => this.handleChange(e)} />
+            <input className="form-control" type="text" name="lastName" value={this.state.lastName} onChange={ e => this.handleChange(e)} required/>
             </div>
 
             <div className="form-group">
             <label>Password</label>
-            <input className="form-control" type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+            <input className="form-control" type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} required/>
+            <small className="form-text text-muted">Your password must contain 7 characters</small>
+            <small className="form-text pt-2" style={{color: "red"}}>{this.state.error}</small>
             </div>
             
-            <input className="btn btn-primary" type="submit" value="Signup" />
+            <input style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" value="Signup" />
           </form>
      
-          <p className="form-text">Already have an account? <Link to={"/login"}>Log in</Link></p>
+          <p className="form-text">Already have an account? <Link style={{color: "#3b6978"}} to={"/login"}>Log in</Link></p>
      
         </div>
       )
