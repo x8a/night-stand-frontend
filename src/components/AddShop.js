@@ -26,30 +26,36 @@ function handleScriptLoad(updateQuery, autoCompleteRef) {
   autoComplete = new window.google.maps.places.Autocomplete(
     autoCompleteRef.current
   );
-  autoComplete.setFields(["name", "address_components", "formatted_address"]);
+  autoComplete.setFields(["name", "address_components", "formatted_address", "geometry"]);
   autoComplete.addListener("place_changed", () =>
     handlePlaceSelect(updateQuery)
   );
 }
 
 let name = ''
+let lat = 0;
+let long = 0;
 
 async function handlePlaceSelect(updateQuery) {
   const addressObject = autoComplete.getPlace();
   const address = addressObject.formatted_address;
   name = addressObject.name;
+  lat = addressObject.geometry.location.lat();
+  long = addressObject.geometry.location.lng();
   updateQuery(address);
 }
 
-const saveShop = (name, query) => {
+const saveShop = (name, lat, long, query) => {
   const body = {
     store: name,
-    address: query
+    address: query,
+    lat: lat,
+    long: long
   };
   axios
-    .post(`${process.env.REACT_APP_API_URL}/new-shop`, body, {withCredentials:true})
-    .then()
-    .catch((error) => console.log(error));
+  .post(`${process.env.REACT_APP_API_URL}/new-shop`, body, {withCredentials:true})
+  .then()
+  .catch(e => console.log(e));
 };
 
 
@@ -80,7 +86,15 @@ function AddShop() {
             <label>Address</label>
             <input className="form-control" type="text" name="address" onChange={() => null} value={query}/>
             </div>
-            <button onClick={() => saveShop(name, query)} style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" >Add book store</button>
+            <button onClick={() => saveShop(name, lat, long, query)} style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" >Add book store</button>
+
+            <div className="form-group">
+            <input className="form-control" type="text" name="lat" onChange={() => null} value={lat}/>
+            </div>
+
+            <div className="form-group">
+            <input className="form-control" type="text" name="long" onChange={() => null} value={long}/>
+            </div>
       </form>
     </div>
   );

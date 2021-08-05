@@ -24,15 +24,7 @@ export default class ShopDetails extends Component {
     };
 
     getLocation = () => {
-      axios.get(process.env.REACT_APP_API_URL + '/map?search=' + this.state.address)
-        .then(response => {
-            this.setState({
-                ...this.state,
-                lat: response.data.candidates[0].geometry.location.lat,
-                lng: response.data.candidates[0].geometry.location.lng
-            })
-        })
-        .catch(e => console.log(e))
+      console.log(this.state)
     }
 
     getMapOptions = (maps) => {
@@ -59,34 +51,29 @@ export default class ShopDetails extends Component {
 
         return (
             <div className="general-bg pl-3" style={{ minHeight: "100%", color: "#393b44", paddingTop: "90px" }}>
-            <div>
+
                 <h1 className='text-center'>{this.state.store}</h1>
                 <p  className='text-center'>{this.state.address}</p>
-            </div>
-            {!this.state.lat? <button onClick={this.getLocation} className="btn btn-info" style={{height: "48px", fontSize: "20px", marginLeft: '30%'}}>Show in map</button> : ''}
-            {this.state.lat ? 
-              <div className="pt-3" style={{ width: "350px", height: "530px" }}>
-                <GoogleMapReact
-                  bootstrapURLKeys={{
-                    key: process.env.REACT_APP_GOOGLE_KEY,
-                  }}
-                  center={{
-                    lat: this.state.lat,
-                    lng: this.state.lng
-                  }}
-                  defaultZoom={15}
-                  options={this.getMapOptions}
-                  yesIWantToUseGoogleMapApiInternals
-                >
-                <MyMarker
-                  lat={this.state.lat}
-                  lng={this.state.lng}
-                />
-                </GoogleMapReact>
-              </div>            
-            :
-              ''
-            }
+
+            <div className="pt-3" style={{ width: "350px", height: "530px" }}>
+              <GoogleMapReact
+                bootstrapURLKeys={{
+                  key: process.env.REACT_APP_GOOGLE_KEY,
+                }}
+                center={{
+                  lat: this.state.lat,
+                  lng: this.state.long
+                }}
+                defaultZoom={15}
+                options={this.getMapOptions}
+                yesIWantToUseGoogleMapApiInternals
+              >
+              <MyMarker
+                lat={this.state.lat}
+                lng={this.state.long}
+              />
+              </GoogleMapReact>
+            </div>            
             <div className="empty"></div>
             </div>
         )
