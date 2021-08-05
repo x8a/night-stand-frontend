@@ -51,10 +51,8 @@ export default class ShopDetails extends Component {
 
         return (
             <div className="general-bg pl-3" style={{ minHeight: "100%", color: "#393b44", paddingTop: "90px" }}>
-
-                <h1 className='text-center'>{this.state.store}</h1>
-                <p  className='text-center'>{this.state.address}</p>
-
+              <h1 className='text-center'>{this.state.store}</h1>
+              <p  className='text-center'>{this.state.address}</p>
             <div className="pt-3" style={{ width: "350px", height: "530px" }}>
               <GoogleMapReact
                 bootstrapURLKeys={{
