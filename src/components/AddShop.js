@@ -87,14 +87,6 @@ function AddShop() {
             <input className="form-control" type="text" name="address" onChange={() => null} value={query}/>
             </div>
             <button onClick={() => saveShop(name, lat, long, query)} style={{height: "48px", fontSize: "20px"}} className="btn btn-info" type="submit" >Add book store</button>
-
-            <div className="form-group">
-            <input className="form-control" type="text" name="lat" onChange={() => null} value={lat}/>
-            </div>
-
-            <div className="form-group">
-            <input className="form-control" type="text" name="long" onChange={() => null} value={long}/>
-            </div>
       </form>
     </div>
   );
